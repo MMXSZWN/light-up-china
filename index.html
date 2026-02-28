@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点亮中国</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 600px;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #7f8c8d;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .visited {
+            color: #27ae60;
+        }
+        
+        .unvisited {
+            color: #e74c3c;
+        }
+        
+        .provinces-list {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .list-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 0 10px;
+        }
+        
+        .list-card h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .province-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .province-item {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        
+        .visited-item {
+            background-color: #e8f5e8;
+            color: #27ae60;
+        }
+        
+        .unvisited-item {
+            background-color: #f5e8e8;
+            color: #e74c3c;
+        }
+        
+        .instructions {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        
+        .instructions h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .instructions p {
+            line-height: 1.5;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>点亮中国 - 记录你的旅行足迹</h1>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <h2>已去过的省份</h2>
+                <div class="stat-number visited" id="visited-count">0</div>
+            </div>
+            <div class="stat-card">
+                <h2>未去过的省份</h2>
+                <div class="stat-number unvisited" id="unvisited-count">34</div>
+            </div>
+        </div>
+        
+        <div class="map-container" id="china-map"></div>
+        
+        <div class="provinces-list">
+            <div class="list-card">
+                <h2>已去过的省份</h2>
+                <div class="province-items" id="visited-provinces"></div>
+            </div>
+            <div class="list-card">
+                <h2>未去过的省份</h2>
+                <div class="province-items" id="unvisited-provinces"></div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>使用说明</h2>
+            <p>点击地图上的省份，标记为已去过（绿色）或未去过（灰色）。系统会自动统计并显示已去过和未去过的省份数量及具体省份名称。</p>
+        </div>
+    </div>
+    
+    <!-- 引入ECharts库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <!-- 引入中国地图数据 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+    <!-- 引入自定义脚本 -->
+    <script src="script.js"></script>
+</body>
+</html>
